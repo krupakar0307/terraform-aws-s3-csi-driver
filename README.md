@@ -9,8 +9,8 @@ Initially, set up an S3 Bucket, integrate the below module into your code, and e
 
 ```
 module "eks-s3-csi" {
-  source           = "krupakar"
-  aws_profile      = "your_profile_name"
+  source           = "krupakar0307/s3-csi-driver/aws"
+  version          = "0.0.1"
   aws_region       = "region"
   s3_bucket_name   = "bucker_name"
   iam_role_name    = "role_name"
