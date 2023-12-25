@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "s3_eks_policy" {
-  name        = "s3-access-policy"
+  name        = "${var.bucket_name}-s3-mount-policy"
   description = "IAM policy for S3 bucket access"
 
   policy = jsonencode({
@@ -27,7 +27,7 @@ resource "aws_iam_policy" "s3_eks_policy" {
 }
 
 resource "aws_iam_role" "s3_eks_role" {
-  name = var.iam_role_name
+  name = "${var.iam_role_name}-s3-mount-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -40,8 +40,8 @@ resource "aws_iam_role" "s3_eks_role" {
         Action = "sts:AssumeRoleWithWebIdentity",
         Condition = {
           StringLike = {
-            "${data.aws_eks_cluster.eks_cluster.identity[0].oidc[0].issuer}:sub" = "system:serviceaccount:kube-system:s3-csi-*",
-            "${data.aws_eks_cluster.eks_cluster.identity[0].oidc[0].issuer}:aud" = "sts.amazonaws.com",
+            "${replace(data.aws_eks_cluster.eks_cluster.identity[0].oidc[0].issuer, "https://", "")}:sub" = "system:serviceaccount:kube-system:s3-csi-*",
+            "${replace(data.aws_eks_cluster.eks_cluster.identity[0].oidc[0].issuer, "https://", "")}:aud" = "sts.amazonaws.com",
           },
         },
       },
