@@ -20,7 +20,7 @@ Replace cluster_name with your eks cluster name.
 Then add below piece of code in your terraform configuration, and place your inputs such as  `region`, `aws_profile`,  `bucket_name`, `cluster_name` and give name for `Iam Role`. Here this role assigns with policy having s3 bucket permissions and role has assumeRole policy with eks cluster.
 
 ```sh
-module "eks-s3-csi" {
+module "s3-csi-driver" {
   source           = "krupakar0307/s3-csi-driver/aws"
   version          = "0.0.2"
   aws_region       = "region"
