@@ -1,6 +1,7 @@
 resource "aws_iam_policy" "s3_eks_policy" {
   name        = "${var.bucket_name}-s3-mount-policy"
   description = "IAM policy for S3 bucket access"
+  tags        = var.tags
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -28,6 +29,7 @@ resource "aws_iam_policy" "s3_eks_policy" {
 
 resource "aws_iam_role" "s3_eks_role" {
   name = "${var.iam_role_name}-s3-mount-role"
+  tags = var.tags
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",

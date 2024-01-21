@@ -15,3 +15,9 @@ variable "eks_cluster" {
   type        = string
   description = "provide eks cluster name to provision s3 csi with your cluster"
 }
+
+
+variable "tags" {
+  type = map(string)
+  default = {}
+}
