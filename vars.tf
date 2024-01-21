@@ -1,7 +1,3 @@
-variable "aws_profile" {
-  description = "provide your environment profile"
-  type        = string
-}
 variable "aws_region" {
   description = "provide your aws region"
   type        = string
