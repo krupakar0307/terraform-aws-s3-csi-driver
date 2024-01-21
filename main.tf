@@ -4,4 +4,5 @@ resource "aws_eks_addon" "eks_s3_csi" {
   addon_version               = data.aws_eks_addon_version.s3_csi_driver.version
   resolve_conflicts_on_create = "OVERWRITE"
   service_account_role_arn    = aws_iam_role.s3_eks_role.arn
+  tags                        = var.tags
 }
